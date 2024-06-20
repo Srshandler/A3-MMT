@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttResponse
 
 # Create your views here.
 def home(request):
-    return HttResponse('Vamo Dale')
+    return render(request, 'index.html')
+
+def form(request):
+    return render(request, 'form.html')
