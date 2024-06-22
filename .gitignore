@@ -1,5 +1,55 @@
 # Arquivos gerados pelo sistema operacional
 .DS_Store
 
-# Diretório do ambiente virtual do Python
+# Ambiente virtual
 venv/
+.venv/
+.env
+
+# Diretórios de cache do Python
+__pycache__/
+*.py[cod]
+
+# Arquivos de log
+*.log
+
+# Banco de dados SQLite (ou outro banco de dados de desenvolvimento)
+db.sqlite3
+db.sqlite3-journal
+
+# Diretórios de migração do Django
+*/migrations/
+
+# Arquivos do sistema operacional
+.DS_Store
+Thumbs.db
+
+# Configurações locais e arquivos sensíveis
+*.env
+*.local
+config/settings/local.py
+config/settings/*.local
+
+# Diretório de mídia (uploads de usuários, se não forem armazenados externamente)
+media/
+
+# Arquivos estáticos coletados (após executar 'collectstatic')
+staticfiles/
+
+# Arquivos de construção
+build/
+dist/
+*.egg-info/
+
+# Arquivos de IDEs e editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Arquivos de testes de cobertura
+htmlcov/
+.coverage
+.tox/
+.nox/
+.pytest_cache/
