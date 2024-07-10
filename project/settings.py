@@ -122,3 +122,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# PARA ENTRAR NO ADMIN, DEIXE ESSA LINHA COMENTADA E SALVE O ARQUIVO
+#AUTH_USER_MODEL = 'app.Cliente'  # Replace 'app' with the actual app name containing your custom user model
+
+# settings.py
+
+#'''AUTHENTICATION_BACKENDS = [
+#    'django.contrib.auth.backends.ModelBackend',  # Keep the default backend
+#    'app.authentication.CPF_CNPJBackend',  # Add your custom backend
+#]
+#'''

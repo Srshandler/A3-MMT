@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractUser, Group, Permission
 # Create your models here.
 
 class Estado(models.Model):
@@ -15,6 +15,7 @@ class Cidade(models.Model):
 
 class Endereco(models.Model):
     id_endereco = models.AutoField(primary_key=True)
+    local = models.CharField(max_length=255)
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
 
 
@@ -32,18 +33,29 @@ class Evento(models.Model):
 
 
 class Cliente(AbstractUser): # Recebe usuario já feito do django
+    # Your custom fields for Cliente
     class TipoCliente(models.IntegerChoices):
         PESSOA_FISICA = 1, 'Pessoa Física'
         PESSOA_JURIDICA = 2, 'Pessoa Jurídica'
-   
-    # AbstractUser já possui: username (!); first_name; last_name; email (!); password (!); is_active; is_staff; is_superuser; date_joined
+
     id_usuario = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=255)
-    cpf_cnpj = models.CharField(max_length=14)
+    cpf_cnpj = models.CharField(max_length=14, unique=True)
+    email = models.EmailField(unique=True)
     tipo_cliente = models.IntegerField(
         choices=TipoCliente.choices,
         default=TipoCliente.PESSOA_FISICA,
     )
+    username = None
+    USERNAME_FIELD = 'cpf_cnpj'
+    REQUIRED_FIELDS = ['nome', 'email', 'tipo_cliente']
+
+    # Define related_name to avoid clashes with auth.User
+    groups = models.ManyToManyField(Group, related_name='clientes')
+    user_permissions = models.ManyToManyField(Permission, related_name='clientes')
+
+    def __str__(self):
+        return self.cpf_cnpj  # Or any other representation you prefer
 
 
 class Telefone(models.Model):
